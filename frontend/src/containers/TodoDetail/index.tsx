@@ -1,14 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  List,
-  Button,
-  Typography,
-  Input,
-  message,
-  Select,
-  Space,
-} from "antd";
+import { List, Button, Typography, Input, message, Select, Space } from "antd";
 import {
   EditOutlined,
   DeleteOutlined,
@@ -16,7 +8,7 @@ import {
   CloseOutlined,
 } from "@ant-design/icons";
 
-import TodoInput from "../../components/TodoInput";
+import TodoInput from "../../components/TodoForm";
 import {
   useSchedulesByDate,
   useAddSchedule,
@@ -46,7 +38,11 @@ const TodoPage = () => {
   const [editingPriority, setEditingPriority] = useState<number>(1);
   const [editingKeyword, setEditingKeyword] = useState<string>("");
 
-  const handleAdd = (content: string,  priorityLevel: number, keyword: string) => {
+  const handleAdd = (
+    content: string,
+    priorityLevel: number,
+    keyword: string
+  ) => {
     if (!date) return;
     addSchedule.mutate(
       { date, content, priorityLevel, keyword },
@@ -80,14 +76,14 @@ const TodoPage = () => {
 
   const handleEditSave = () => {
     if (!date || editingId === null) return;
-  
+
     updateSchedule.mutate(
       {
         id: editingId,
         date,
         content: editingText,
         priorityLevel: editingPriority,
-        keyword: editingKeyword, 
+        keyword: editingKeyword,
       },
       {
         onSuccess: () => {
@@ -116,7 +112,16 @@ const TodoPage = () => {
       <Title level={3}>{date} 일정 관리</Title>
 
       <TodoInput onAdd={handleAdd} />
-      <div style={{ display: "flex", alignItems: "center", gap: 12, width:'100%',justifyContent:'flex-end',marginBottom:'10px' }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          width: "100%",
+          justifyContent: "flex-end",
+          marginBottom: "10px",
+        }}
+      >
         <span style={{ color: "red" }}>● 중요</span>
         <span style={{ color: "blue" }}>● 중간</span>
         <span style={{ color: "black" }}>● 낮음</span>
@@ -160,12 +165,12 @@ const TodoPage = () => {
             >
               {item.id === editingId ? (
                 <Space>
-                  <Input 
+                  <Input
                     className="editing-input"
                     value={editingText}
                     onChange={(e) => setEditingText(e.target.value)}
                     onPressEnter={handleEditSave}
-                    style={{ width: '100%' }}
+                    style={{ width: "100%" }}
                   />
                   <Select
                     value={editingPriority}
@@ -184,11 +189,16 @@ const TodoPage = () => {
                     color: getColorByPriority(item.priorityLevel ?? 1),
                     display: "flex",
                     gap: "5px",
-                    flexDirection: 'row'
+                    flexDirection: "row",
                   }}
                 >
                   {item.priorityLevel === 3 && <strong> *중요*</strong>}
                   {item.content}
+                  {item.keyword && (
+                    <span style={{ color: "gray", marginLeft: 8 }}>
+                      #{item.keyword}
+                    </span>
+                  )}
                 </span>
               )}
             </List.Item>

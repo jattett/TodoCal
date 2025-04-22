@@ -71,11 +71,26 @@ export const useUpdateSchedule = () => {
 
   return useMutation({
     mutationFn: async (updatedSchedule: Schedule) => {
-      const res = await axios.put(`${API_BASE}/${updatedSchedule.id}`, updatedSchedule);
+      const res = await axios.put(
+        `${API_BASE}/${updatedSchedule.id}`,
+        updatedSchedule
+      );
       return res.data;
     },
     onSuccess: (_, updated) => {
       queryClient.invalidateQueries({ queryKey: ["schedules", updated.date] });
     },
+  });
+};
+
+// 키워드 가져오기
+export const useKeywords = () => {
+  return useQuery<string[]>({
+    queryKey: ["keywords"],
+    queryFn: async () => {
+      const res = await axios.get(`${API_BASE}/keywords`);
+      return res.data; // 키워드 목록 반환
+    },
+    retry: false,
   });
 };

@@ -1,9 +1,15 @@
 import { useState, useMemo } from "react";
-import { Calendar, Layout, Select } from "antd";
+import { Calendar, Layout } from "antd";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 import { MainWrapper } from "./Styled";
-import { useAllSchedules, useSchedulesByDate } from "../../store/useSchedules";
+import {
+  useAllSchedules,
+  useSchedulesByDate,
+  useKeywords,
+} from "../../store/useSchedules";
+
+import CalendarHeader from "../../components/CalendarHeader";
 
 moment.locale("ko");
 const { Content } = Layout;
@@ -23,6 +29,9 @@ const MainPage = () => {
   const { data: selectedDaySchedules = [] } =
     useSchedulesByDate(selectedDateStr);
 
+  // 📌 키워드 목록
+  const { data: keywords = [] } = useKeywords(); // 키워드 API 호출
+
   // 📌 날짜 선택 시
   const onSelectDate = (value: moment.Moment) => {
     setSelectedDate(value);
@@ -31,51 +40,43 @@ const MainPage = () => {
   // 📌 날짜별 일정 매핑
   const grouped = useMemo(() => {
     const result: Record<string, { content: string; level: number }[]> = {};
-  
+
     allSchedules.forEach((cur) => {
       if (selectedKeyword && cur.keyword !== selectedKeyword) return; // 키워드 필터링
-  
+
       if (!result[cur.date]) result[cur.date] = [];
       result[cur.date].push({
         content: cur.content,
         level: cur.priorityLevel || 1,
       });
     });
-  
+
     return result;
   }, [allSchedules, selectedKeyword]);
-
-  const keywords = useMemo(() => {
-    if (!allSchedules) return [];
-    return Array.from(
-      new Set(allSchedules.map((s: Schedule) => s.keyword).filter(Boolean))
-    );
-  }, [allSchedules]);
-
 
   const dateCellRender = (value: moment.Moment) => {
     const dateStr = value.format("YYYY-MM-DD");
     let items = grouped[dateStr];
-  
+
     if (!items || items.length === 0) return null;
-  
+
     // 🔽 필터된 데이터
     if (selectedLevel !== null) {
       items = items.filter((item) => item.level === selectedLevel);
     }
-  
+
     if (items.length === 0) return null;
-  
+
     const maxDisplay = 5;
     const showMore = items.length > maxDisplay;
-  
+
     return (
       <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
         {items.slice(0, maxDisplay).map((item, i) => {
           let color = "inherit";
           if (item.level === 3) color = "red";
           else if (item.level === 2) color = "blue";
-  
+
           return (
             <li
               key={i}
@@ -92,7 +93,7 @@ const MainPage = () => {
             </li>
           );
         })}
-  
+
         {showMore && (
           <li style={{ fontSize: 12, color: "#999" }}>
             + {items.length - maxDisplay}개 더보기
@@ -101,7 +102,6 @@ const MainPage = () => {
       </ul>
     );
   };
-  
 
   return (
     <MainWrapper>
@@ -113,7 +113,9 @@ const MainPage = () => {
             {/* 🔽 선택한 키워드 있을 경우 필터링 */}
             {(() => {
               const filteredDaySchedules = selectedKeyword
-                ? selectedDaySchedules.filter((s) => s.keyword === selectedKeyword)
+                ? selectedDaySchedules.filter(
+                    (s) => s.keyword === selectedKeyword
+                  )
                 : selectedDaySchedules;
 
               return filteredDaySchedules.length > 0 ? (
@@ -158,80 +160,17 @@ const MainPage = () => {
           value={selectedDate} // ✅ 선택된 날짜 하이라이트
           onSelect={onSelectDate}
           dateCellRender={dateCellRender}
-          headerRender={({ value, onChange }) => {
-            const years = Array.from({ length: 11 }, (_, i) => 2020 + i);
-            const months = Array.from({ length: 12 }, (_, i) => i);
-
-            return (
-            <div className="header-content">
-              <div style={{ display: "flex", alignItems: "center", gap: 12, width: '100%' }}>
-                <span
-                  onClick={() => setSelectedLevel(3)}
-                  style={{ color: "red", cursor: "pointer", fontWeight: selectedLevel === 3 ? "bold" : "normal" }}
-                >
-                  ● 중요
-                </span>
-                <span
-                  onClick={() => setSelectedLevel(2)}
-                  style={{ color: "blue", cursor: "pointer", fontWeight: selectedLevel === 2 ? "bold" : "normal" }}
-                >
-                  ● 중간
-                </span>
-                <span
-                  onClick={() => setSelectedLevel(1)}
-                  style={{ color: "black", cursor: "pointer", fontWeight: selectedLevel === 1 ? "bold" : "normal" }}
-                >
-                  ● 낮음
-                </span>
-                <span
-                  onClick={() => setSelectedLevel(null)}
-                  style={{ marginLeft: 16, cursor: "pointer", color: "gray", textDecoration: selectedLevel === null ? "underline" : "none" }}
-                >
-                  전체 보기
-                </span>
-              </div>
-              <div className="ant-picker-header-date">
-                <Select
-                  value={value.year()}
-                  onChange={(year: number) => {
-                    onChange(value.clone().year(year));
-                  }}
-                >
-                  {years.map((year) => (
-                    <Select.Option key={year} value={year}>
-                      {year}년
-                    </Select.Option>
-                  ))}
-                </Select>
-                <Select
-                  value={value.month()}
-                  onChange={(month: number) => {
-                    onChange(value.clone().month(month));
-                  }}
-                >
-                  {months.map((m) => (
-                    <Select.Option key={m} value={m}>
-                      {m + 1}월
-                    </Select.Option>
-                  ))}
-                </Select>
-                <Select
-                  placeholder="키워드 선택"
-                  value={selectedKeyword}
-                  onChange={(keyword) => setSelectedKeyword(keyword)}
-                  allowClear
-                >
-                  {keywords.map((keyword) => (
-                    <Select.Option key={keyword} value={keyword}>
-                      {keyword}
-                    </Select.Option>
-                  ))}
-              </Select>
-              </div>
-            </div>
-             
-            );
-          }}
+          headerRender={({ value, onChange }) => (
+            <CalendarHeader
+              value={value}
+              onChange={onChange}
+              selectedLevel={selectedLevel}
+              setSelectedLevel={setSelectedLevel}
+              selectedKeyword={selectedKeyword}
+              setSelectedKeyword={setSelectedKeyword}
+              keywords={keywords} // 키워드 목록 전달
+            />
+          )}
         />
       </Content>
     </MainWrapper>

@@ -5,7 +5,6 @@ import { Layout } from "antd";
 import "antd/dist/antd.css"; // Ant Design CSS
 import GlobalStyle from "./assets/global-style";
 
-
 const { Header, Content } = Layout;
 
 function App() {

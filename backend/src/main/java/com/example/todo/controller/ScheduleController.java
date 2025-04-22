@@ -53,4 +53,15 @@ public class ScheduleController {
     public void deleteSchedule(@PathVariable Long id) {
         scheduleRepository.deleteById(id);
     }
+
+    @GetMapping("/keywords")
+    public ResponseEntity<List<String>> getKeywords() {
+        try {
+            List<String> keywords = scheduleRepository.findDistinctKeywords();
+            return ResponseEntity.ok(keywords);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).build();
+        }
+    }
 }

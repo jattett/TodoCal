@@ -53,16 +53,16 @@ export const MainWrapper = styled.div`
       align-items: center;
       justify-content: space-between;
       .ant-picker-header-date {
-      display: flex;
-      width: 100%;
-      padding: 0 16px 8px;
-      gap: 8px;
-      justify-content: flex-end;
-      .ant-select-selector {
-        border-radius: 8px;
+        display: flex;
+        width: 100%;
+        padding: 0 16px 8px;
+        gap: 8px;
+        justify-content: flex-end;
+        .ant-select-selector {
+          border-radius: 8px;
+        }
       }
-    }
-    .ant-picker-content {
+      .ant-picker-content {
         .date-cell-conetent {
           font-size: 14px;
           white-space: nowrap;
