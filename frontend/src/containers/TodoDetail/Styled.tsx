@@ -39,22 +39,35 @@ export const TodoWrapper = styled.div`
       transition: background-color 0.3s;
       cursor: pointer;
       .ant-list-item-action {
+        margin: 0;
         li {
           padding-left: 0;
         }
       }
-      .ant-input {
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid #40a9ff;
-        padding-left: 3px;
-        &:focus {
-          box-shadow: none;
-          border-bottom: 1px solid #40a9ff;
-        }
-        &:hover {
-          box-shadow: none;
-          border-bottom: 1px solid #40a9ff;
+      .ant-space {
+        width: 100%;
+        gap: 8px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        
+          .ant-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #40a9ff;
+            padding-left: 3px;
+            width: 100%;
+            &:focus {
+              box-shadow: none;
+              border-bottom: 1px solid #40a9ff;
+            }
+            &:hover {
+              box-shadow: none;
+              border-bottom: 1px solid #40a9ff;
+            }
+          }
+        .ant-select-selector {
+          border-radius: 8px;
         }
       }
 

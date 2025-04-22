@@ -2,12 +2,14 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
-const API_BASE = "http://localhost:8081/schedules";
+const API_BASE = "http://localhost:8080/schedules";
 
 export interface Schedule {
   id: number;
   date: string;
   content: string;
+  priorityLevel: number;
+  keyword: string;
 }
 
 export const useAllSchedules = () => {
@@ -69,14 +71,11 @@ export const useUpdateSchedule = () => {
 
   return useMutation({
     mutationFn: async (updatedSchedule: Schedule) => {
-      const res = await axios.put(
-        `${API_BASE}/${updatedSchedule.id}`,
-        updatedSchedule
-      );
+      const res = await axios.put(`${API_BASE}/${updatedSchedule.id}`, updatedSchedule);
       return res.data;
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["schedules"] });
+    onSuccess: (_, updated) => {
+      queryClient.invalidateQueries({ queryKey: ["schedules", updated.date] });
     },
   });
 };

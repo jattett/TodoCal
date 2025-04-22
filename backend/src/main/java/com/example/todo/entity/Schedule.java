@@ -1,7 +1,7 @@
 package com.example.todo.entity;
 
 import jakarta.persistence.*;
-import lombok.*; 
+import lombok.*;
 
 @Entity
 @Getter
@@ -14,6 +14,9 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String date; 
+    private String date;
     private String content;
+    @Column(name = "priority_level")
+    private Integer priorityLevel;
+    private String keyword;
 }

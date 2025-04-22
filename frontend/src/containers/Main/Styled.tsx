@@ -28,7 +28,7 @@ export const MainWrapper = styled.div`
       ul {
         display: flex;
         flex-direction: row;
-        align-items: center;
+        align-items: flex-end;
         gap: 15px;
         li {
           font-size: 18px;
@@ -46,26 +46,31 @@ export const MainWrapper = styled.div`
         }
       }
     }
-    .ant-picker-header-date {
+    .header-content {
+      border-top: 1px solid #e9e9e9;
+      padding-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .ant-picker-header-date {
       display: flex;
       width: 100%;
       padding: 0 16px 8px;
       gap: 8px;
       justify-content: flex-end;
-      padding-top: 16px;
-      border-top: 1px solid #e9e9e9;
       .ant-select-selector {
         border-radius: 8px;
       }
     }
     .ant-picker-content {
-      .date-cell-conetent {
-        font-size: 14px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        margin: 0;
-        font-weight: 700;
+        .date-cell-conetent {
+          font-size: 14px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          margin: 0;
+          font-weight: 700;
+        }
       }
     }
   }

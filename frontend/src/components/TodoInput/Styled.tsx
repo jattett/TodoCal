@@ -13,6 +13,14 @@ export const TodoDetailWrapper = styled.div`
       border-radius: 8px;
       height: 42px;
     }
+    .ant-select-selector {
+      height: 42px;
+      border-radius: 8px;
+      .ant-select-selection-item {
+        display: flex;
+        align-items: center;
+      }
+    }
     .ant-btn {
       border-radius: 8px;
       height: 42px;
