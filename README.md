@@ -92,7 +92,6 @@ INSERT INTO schedule (date, content, priority_level, keyword) VALUES
 
 ## 4. API 명세
 
-Swagger UI는 적용되지 않았지만 아래와 같은 엔드포인트 제공
 
 | Method | Endpoint            | Description             |
 | ------ | ------------------- | ----------------------- |
