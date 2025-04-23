@@ -13,7 +13,7 @@ export const MainWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     margin: 0 auto;
     .selected-date {
       margin-top: 30px;

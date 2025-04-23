@@ -72,6 +72,7 @@ const TodoPage = () => {
     setEditingId(item.id);
     setEditingText(item.content);
     setEditingPriority(item.priorityLevel || 1);
+    setEditingKeyword(item.keyword || "");
   };
 
   const handleEditSave = () => {
@@ -111,6 +112,8 @@ const TodoPage = () => {
     <TodoWrapper>
       <Title level={3}>{date} 일정 관리</Title>
 
+      
+      
       <TodoInput onAdd={handleAdd} />
       <div
         style={{
@@ -172,9 +175,15 @@ const TodoPage = () => {
                     onPressEnter={handleEditSave}
                     style={{ width: "100%" }}
                   />
+                  <Input
+                    placeholder="키워드"
+                    value={editingKeyword}
+                    onChange={(e) => setEditingKeyword(e.target.value)}
+                    style={{ width: '100%' }}
+                  />
                   <Select
                     value={editingPriority}
-                    onChange={(val) => setEditingPriority(val)}
+                    onChange={(value) => setEditingPriority(value)}
                   >
                     {priorityOptions.map((opt) => (
                       <Select.Option key={opt.value} value={opt.value}>
