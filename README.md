@@ -90,6 +90,10 @@ INSERT INTO schedule (date, content, priority_level, keyword) VALUES
 ('2025-03-03', '기획 회의', 2, '기획'),
 ('2025-03-09', '디자인 회의', 1, '디자인'),
 ('2025-03-15', '개발 일정 조율', 3, '개발'),
+.
+.
+.
+.
 ```
 
 ---
