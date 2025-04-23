@@ -95,7 +95,7 @@ INSERT INTO schedule (date, content, priority_level, keyword) VALUES
 
 | 구분          | 사용 기술                | 비고                         |
 | ------------- | ------------------------ | ---------------------------- |
-| 프론트엔드    | React, Vite, Zustand     | 컴포넌트 단위 개발           |
+| 프론트엔드    | React, Vite     | 컴포넌트 단위 개발           |
 | UI 라이브러리 | Ant Design               | 빠른 UI 구성                 |
 | 서버 사이드   | Spring Boot, JPA, Lombok | RESTful API 및 ORM 기반      |
 | 데이터베이스  | MySQL                    | 관계형 DB                    |
