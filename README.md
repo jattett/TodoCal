@@ -65,6 +65,9 @@ React 18 + Vite
 # 실행
 npm install
 npm run dev
+
+#호출페이지
+http://localhost:5173/
 ```
 
 ### 2.3 MySQL 초기 스키마
