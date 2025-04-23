@@ -103,7 +103,7 @@ INSERT INTO schedule (date, content, priority_level, keyword) VALUES
 | 서버 사이드   | Spring Boot, JPA, Lombok | RESTful API 및 ORM 기반      |
 | 데이터베이스  | MySQL                    | 관계형 DB                    |
 | 테스트        | JUnit, MockMvc           | 단위 / 통합 테스트 구성 가능 |
-| 기타          | React Query              | API 캐싱 및 요청 관리        |
+| 기타          | React Query, React Hook Form   | API 캐싱 / 폼 상태 관리    |
 
 ---
 
