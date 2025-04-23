@@ -47,8 +47,10 @@ Spring Boot 3.x
 # 실행
 ./gradlew bootRun
 ```
+## DataBase info
 
 ```yml
+
 url: jdbc:mysql://localhost:3306/todo_db
 username: root
 password: 1111
