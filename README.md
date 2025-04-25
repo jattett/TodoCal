@@ -46,9 +46,13 @@ Spring Boot 3.x
 
 # 실행
 ./gradlew bootRun
+mysql -u root -p
+USE todo_db
 ```
+## DataBase info
 
 ```yml
+
 url: jdbc:mysql://localhost:3306/todo_db
 username: root
 password: 1111
@@ -65,6 +69,9 @@ React 18 + Vite
 # 실행
 npm install
 npm run dev
+
+#호출페이지
+http://localhost:5173/
 ```
 
 ### 2.3 MySQL 초기 스키마
@@ -87,6 +94,10 @@ INSERT INTO schedule (date, content, priority_level, keyword) VALUES
 ('2025-03-03', '기획 회의', 2, '기획'),
 ('2025-03-09', '디자인 회의', 1, '디자인'),
 ('2025-03-15', '개발 일정 조율', 3, '개발'),
+.
+.
+.
+.
 ```
 
 ---
@@ -95,12 +106,12 @@ INSERT INTO schedule (date, content, priority_level, keyword) VALUES
 
 | 구분          | 사용 기술                | 비고                         |
 | ------------- | ------------------------ | ---------------------------- |
-| 프론트엔드    | React, Vite, Zustand     | 컴포넌트 단위 개발           |
+| 프론트엔드    | React, Vite     | 컴포넌트 단위 개발           |
 | UI 라이브러리 | Ant Design               | 빠른 UI 구성                 |
 | 서버 사이드   | Spring Boot, JPA, Lombok | RESTful API 및 ORM 기반      |
 | 데이터베이스  | MySQL                    | 관계형 DB                    |
 | 테스트        | JUnit, MockMvc           | 단위 / 통합 테스트 구성 가능 |
-| 기타          | React Query              | API 캐싱 및 요청 관리        |
+| 기타          | React Query, React Hook Form   | API 캐싱 / 폼 상태 관리    |
 
 ---
 
@@ -137,5 +148,12 @@ JUnit5 및 Spring Boot Test 환경 구성.
 
 ## 6. 추가기능
 
-- 투두리스트 컨텐츠 중요도 개발
-- 키워드 API 개발하여 필터링 기능 개발
+- 투두리스트 컨텐츠 중요도 기능 개발
+일정 항목별로 중요도(priorityLevel) 값을 설정할 수 있도록 기능을 개발하였습니다.
+중요도는 높음, 중간, 낮음의 3단계로 구분되며, 시각적으로 컬러(빨강/파랑/검정)로도 표현됩니다.
+사용자는 원하는 중요도 버튼을 클릭해, 특정 우선순위에 해당하는 일정만 필터링하여 확인할 수 있습니다. 이를 통해 일정의 우선 처리 대상 식별이 수월해졌습니다.
+
+- 키워드 기반 필터링 API 개발
+일정 등록 시 keyword를 함께 저장하고, 해당 키워드를 기준으로 월간 캘린더 또는 일정 리스트를 필터링할 수 있는 API를 구현하였습니다.
+React 프론트엔드에서는 선택형 드롭다운으로 구현하여 사용자가 직관적으로 원하는 키워드의 일정만 조회할 수 있게 하였습니다.
+이 기능은 **업무 영역별 일정 구분(예: 기획, 디자인, 배포)**을 가능하게 하여 효율적인 일정 관리에 기여합니다.
