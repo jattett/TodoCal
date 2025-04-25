@@ -105,7 +105,7 @@ const MainPage = () => {
 
   return (
     <MainWrapper>
-      <Content style={{ padding: 40, background: "white" }}>
+      <Content style={{ background: "white" }}>
         {selectedDate && (
           <div className="selected-date">
             <h1>선택한 날짜: {selectedDate.format("YYYY년 MM월 DD일")}</h1>

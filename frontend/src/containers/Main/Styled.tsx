@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MainWrapper = styled.div`
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: #f0f2f5;
@@ -72,6 +72,36 @@ export const MainWrapper = styled.div`
           font-weight: 700;
         }
       }
+    }
+    .ant-picker-calendar {
+      padding: 40px;
+      margin: 0 auto;
+    }
+  }
+  @media screen and (max-width: 650px) {
+    .ant-layout-content {
+      .ant-picker-calendar {
+        padding: 10px;
+        margin: 0 auto;
+      }
+      .header-content {
+        flex-direction: column;
+        > div {
+          &.ant-picker-header-date  {
+            padding: 0;
+          }
+          justify-content: flex-end;
+          margin-bottom: 10px;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  
+  @media screen and (max-width: 420px) {
+    .date-cell-content {
+      overflow: initial !important;
     }
   }
 `;
