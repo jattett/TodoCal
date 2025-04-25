@@ -47,6 +47,7 @@ Spring Boot 3.x
 # 실행
 ./gradlew bootRun
 mysql -u root -p
+USE todo_db
 ```
 ## DataBase info
 
