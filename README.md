@@ -209,11 +209,15 @@ JUnit5 및 Spring Boot Test 환경 구성.
 ⚠️ 참고: ngrok으로 생성된 URL은 매번 실행 시 달라지기 때문에, 카카오 챗봇 관리자에서 수동으로 최신 주소를 갱신해줘야 합니다.
 
 예시1. 일정등록
+
 ![일정 등록 시연 캡쳐](./assets/katalk1.png)
+
 ![일정 등록 데이터 캡쳐](./assets/data1.png)
 
 예시2. 당일 일정 조회
+
 ![당일 일정 조회 시연 캡쳐](./assets/katalk2.png)
+
 ![당일 일정 조회 캡쳐](./assets/data2.png)
 
 ---
