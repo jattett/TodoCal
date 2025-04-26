@@ -210,13 +210,13 @@ JUnit5 및 Spring Boot Test 환경 구성.
 
 예시1. 일정등록
 
-![일정 등록 시연 캡쳐](./assets/katalk1.png)
+![일정 등록 시연 캡쳐](./assets/katalk1.jpg)
 
 ![일정 등록 데이터 캡쳐](./assets/data1.png)
 
 예시2. 당일 일정 조회
 
-![당일 일정 조회 시연 캡쳐](./assets/katalk2.png)
+![당일 일정 조회 시연 캡쳐](./assets/katalk2.jpg)
 
 ![당일 일정 조회 캡쳐](./assets/data2.png)
 
