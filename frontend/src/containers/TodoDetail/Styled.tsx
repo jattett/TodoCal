@@ -50,22 +50,22 @@ export const TodoWrapper = styled.div`
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        
-          .ant-input {
-            background: transparent;
-            border: none;
+
+        .ant-input {
+          background: transparent;
+          border: none;
+          border-bottom: 1px solid #40a9ff;
+          padding-left: 3px;
+          width: 100%;
+          &:focus {
+            box-shadow: none;
             border-bottom: 1px solid #40a9ff;
-            padding-left: 3px;
-            width: 100%;
-            &:focus {
-              box-shadow: none;
-              border-bottom: 1px solid #40a9ff;
-            }
-            &:hover {
-              box-shadow: none;
-              border-bottom: 1px solid #40a9ff;
-            }
           }
+          &:hover {
+            box-shadow: none;
+            border-bottom: 1px solid #40a9ff;
+          }
+        }
         .ant-select-selector {
           border-radius: 8px;
         }
@@ -74,6 +74,11 @@ export const TodoWrapper = styled.div`
       .ant-btn {
         margin-left: 8px;
       }
+    }
+  }
+  @media screen and (max-width: 420px) {
+    .ant-list-item {
+      flex-wrap: nowrap;
     }
   }
 `;

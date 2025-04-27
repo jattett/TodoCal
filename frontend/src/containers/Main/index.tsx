@@ -109,7 +109,7 @@ const MainPage = () => {
         {selectedDate && (
           <div className="selected-date">
             <h1>선택한 날짜: {selectedDate.format("YYYY년 MM월 DD일")}</h1>
-
+            <p>오늘 할일 목록 입니다.</p>
             {/* 🔽 선택한 키워드 있을 경우 필터링 */}
             {(() => {
               const filteredDaySchedules = selectedKeyword
@@ -120,7 +120,6 @@ const MainPage = () => {
 
               return filteredDaySchedules.length > 0 ? (
                 <ul>
-                  오늘의 할일은
                   {filteredDaySchedules.map((s, i) => {
                     let color = "inherit";
 
@@ -136,13 +135,11 @@ const MainPage = () => {
                       </li>
                     );
                   })}
-                  입니다
                 </ul>
               ) : (
                 <p>오늘 할일은 없습니다.</p>
               );
             })()}
-
             <button
               onClick={() =>
                 navigate(`/todo/${selectedDate.format("YYYY-MM-DD")}`)

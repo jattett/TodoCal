@@ -27,9 +27,13 @@ export const MainWrapper = styled.div`
       }
       ul {
         display: flex;
-        flex-direction: row;
-        align-items: flex-end;
-        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: center;
         li {
           font-size: 18px;
           font-weight: 700;
@@ -87,7 +91,7 @@ export const MainWrapper = styled.div`
       .header-content {
         flex-direction: column;
         > div {
-          &.ant-picker-header-date  {
+          &.ant-picker-header-date {
             padding: 0;
           }
           justify-content: flex-end;
@@ -98,7 +102,6 @@ export const MainWrapper = styled.div`
     }
   }
 
-  
   @media screen and (max-width: 420px) {
     .date-cell-content {
       overflow: initial !important;
